@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.appschef.baseproject">
+
+    <!-- Internet permission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Account permission -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
+    <!-- Sync permission -->
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+
+    <!-- Camera / storage permission -->
+    <!-- TODO: Remove these when it isn't required -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.appschef.baseproject.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:resizeableActivity="false"
+        tools:targetApi="n">
+
+        <activity
+            android:name="com.appschef.baseproject.activity.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.appschef.baseproject.activity.ImageCropActivity" />
+
+        <activity
+            android:name="com.appschef.baseproject.activity.SampleSelectionActivity" />
+
+        <activity
+            android:name="com.appschef.baseproject.activity.SampleDataActivity" />
+
+        <activity
+            android:name="com.appschef.baseproject.activity.SampleAuthActivity" />
+
+        <!-- Account auth service -->
+        <service
+            android:name="itsmagic.present.simpleaccountmanager.AccountAuthService"
+            android:exported="true">
+            <intent-filter>
+                <action
+                    android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/account_auth" />
+        </service>
+
+        <!-- Profile sync provider and service -->
+        <provider
+            android:name="com.appschef.baseproject.account.profile.ProfileSyncProvider"
+            android:authorities="@string/account_manager_account_provider_profile"
+            android:syncable="true"
+            android:label="@string/account_sync_profile_information" />
+        <service
+            android:name="com.appschef.baseproject.account.profile.ProfileSyncService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/account_sync_profile" />
+        </service>
+
+    </application>
+
+</manifest>

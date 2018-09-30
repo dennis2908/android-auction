@@ -1,0 +1,151 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'project-report'
+apply plugin: 'com.getkeepsafe.dexcount'
+
+// To view the dependency tree, open your terminal and run this command:
+// gradlew htmlDependencyReport
+//
+// The result can be viewed in
+// "\\build\reports\project\dependencies\index.html"
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.appschef.baseproject"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode 20180226
+        versionName "0.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // Add a BuildConfig timestamp
+        buildConfigField "long", "M_TIMESTAMP", System.currentTimeMillis() + "L"
+    }
+
+    // Enable Java 8 features
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Set the source path
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+//    // Split APKs for each screen dimension
+//    splits {
+//        // Configures multiple APKs based on screen density.
+//        density {
+//            enable true
+//        }
+//    }
+
+    // Specify the build dimension and flavors
+    flavorDimensions "api", "mode"
+    productFlavors {
+        mock {
+            dimension "api"
+            applicationIdSuffix '.mock'
+            versionNameSuffix "-mock"
+
+//            manifestPlaceholders = [FACEBOOK_APP_ID: "12345", FABRIC_API_KEY: "12345"]
+//            E.g. to use the manifest placeholder in your manifest, use ${FACEBOOK_APP_ID}
+        }
+        staging {
+            dimension "api"
+            applicationIdSuffix '.staging'
+            versionNameSuffix "-staging"
+        }
+        production {
+            dimension "api"
+        }
+
+        free {
+            dimension "mode"
+            applicationIdSuffix '.free'
+        }
+        pro {
+            dimension "mode"
+        }
+    }
+
+    applicationVariants.all { variant ->
+        def apiFlavor = variant.productFlavors[0]
+        def modeFlavor = variant.productFlavors[1]
+        def apiName = apiFlavor.getName()
+        def modeName = modeFlavor.getName()
+        def isValid = true
+
+        if (apiName == "mock") {
+            if (modeName == "free") {
+                variant.buildConfigField 'String', 'M_SAMPLE_STRING', "\"MOCK and FREE\""
+            } else if (modeName == "pro") {
+                variant.buildConfigField 'String', 'M_SAMPLE_STRING', "\"MOCK and PRO\""
+            } else {
+                isValid = false
+            }
+        } else if (apiName.contains("staging")) {
+            if (modeName == "free") {
+                variant.buildConfigField 'String', 'M_SAMPLE_STRING', "\"STAGING and FREE\""
+            } else if (modeName == "pro") {
+                variant.buildConfigField 'String', 'M_SAMPLE_STRING', "\"STAGING and PRO\""
+            } else {
+                isValid = false
+            }
+        } else if (apiName.contains("production")) {
+            if (modeName == "free") {
+                variant.buildConfigField 'String', 'M_SAMPLE_STRING', "\"PRODUCTION and FREE\""
+            } else if (modeName == "pro") {
+                variant.buildConfigField 'String', 'M_SAMPLE_STRING', "\"PRODUCTION and PRO\""
+            } else {
+                isValid = false
+            }
+        } else {
+            isValid = false
+        }
+
+        if (!isValid) throw new IllegalStateException("Invalid variant name: " + variant.getName())
+    }
+
+    // Configure the build types
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+
+    rootProject.rootDependencies.each {
+        add(it.configuration, it.dependency, it.options)
+    }
+}
+
+dexcount {
+    includeTotalMethodCount = true
+}

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_default">
+
+        <TextView
+            android:id="@+id/txt_sample"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default"
+            android:gravity="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+            tools:text="Sample text" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_default">
+
+            <TextView
+                android:id="@+id/txt_sample_api"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:gravity="start"
+                android:padding="@dimen/margin_default"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/txt_sample_mode"
+                tools:text="Sample text api" />
+
+            <TextView
+                android:id="@+id/txt_sample_mode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:gravity="end"
+                android:padding="@dimen/margin_default"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/txt_sample_api"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Sample text mode" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="@dimen/margin_default"
+            android:background="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_datalist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data List" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_authentication"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Authentication" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_image_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Image Picker" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_settings_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Open Account Settings" />
+
+        <com.appschef.baseproject.view.widget.SampleTextInputSpinner
+            android:id="@+id/spinner_sample"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</ScrollView>

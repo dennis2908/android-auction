@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="itsmagic.present.simpleaccountmanager">
+
+    <!-- DANGEROUS PERMISSIONS (must be allowed by the user) -->
+    <!-- Account -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- NORMAL PERMISSIONS (automatically granted) -->
+    <!-- Account -->
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" /> <!-- Deprecated, required for backwards compatibility -->
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" /> <!-- Deprecated, required for backwards compatibility -->
+
+    <!-- Sync -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
+    <application android:label="@string/app_name" />
+
+</manifest>

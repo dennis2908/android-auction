@@ -1,0 +1,78 @@
+ext {
+    // Exclusions
+    def noSupportLib = {
+        exclude group: 'com.android.support'
+    }
+
+    // Internal modules
+    def modules = [
+            accountManager: ':simpleaccountmanager',
+            easierSpinner: ':easierspinner',
+            imagePicker: ':imagepicker',
+            permissionHelper: ':permissionhelper'
+    ]
+
+    // Kotlin, version is set on project's gradle
+    def kotlin = [
+            lib: [group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jre7', version: ext.verKotlin]
+    ]
+
+    // Support library
+    def verSupportLib = '27.0.2'
+    def verConstraintLayout = '1.1.0-beta4'
+    def supportLib = [
+            appCompat       : [group: 'com.android.support', name: 'appcompat-v7', version: verSupportLib],
+            coreUtils       : [group: 'com.android.support', name: 'support-core-utils', version: verSupportLib],
+            design          : [group: 'com.android.support', name: 'design', version: verSupportLib],
+            constraintLayout: [group: 'com.android.support.constraint', name: 'constraint-layout', version: verConstraintLayout]
+    ]
+
+    // Retrofit
+    def verRetrofit = '2.3.0'
+    def verRetrofitLogger = '3.9.1'
+    def retrofit = [
+            lib   : [group: 'com.squareup.retrofit2', name: 'retrofit', version: verRetrofit],
+            gson  : [group: 'com.squareup.retrofit2', name: 'converter-gson', version: verRetrofit],
+            logger: [group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: verRetrofitLogger]
+    ]
+
+    // Gson
+    def verGson = '2.8.2'
+    def gson = [
+            lib: [group: 'com.google.code.gson', name: 'gson', version: verGson]
+    ]
+
+    // Chuck Interceptor
+    def verChuck = '1.1.0'
+    def chuck = [
+            debug  : [group: 'com.readystatesoftware.chuck', name: 'library', version: verChuck],
+            release: [group: 'com.readystatesoftware.chuck', name: 'library-no-op', version: verChuck]
+    ]
+
+    // Image Cropper
+    def verImageCropper = '2.6.0'
+    def imageCropper = [
+            lib  : [group: 'com.theartofdev.edmodo', name: 'android-image-cropper', version: verImageCropper]
+    ]
+
+    // Root app dependencies
+    rootDependencies = [
+            [configuration: "implementation", dependency: project(modules.accountManager), options: noSupportLib],
+            [configuration: "implementation", dependency: project(modules.easierSpinner)],
+            [configuration: "implementation", dependency: project(modules.imagePicker), options: noSupportLib],
+            [configuration: "implementation", dependency: project(modules.permissionHelper)],
+            [configuration: "implementation", dependency: kotlin.lib],
+            [configuration: "implementation", dependency: supportLib.appCompat],
+            [configuration: "implementation", dependency: supportLib.coreUtils],
+            [configuration: "implementation", dependency: supportLib.design],
+            [configuration: "implementation", dependency: supportLib.constraintLayout],
+            [configuration: "implementation", dependency: retrofit.lib],
+            [configuration: "implementation", dependency: retrofit.gson],
+            [configuration: "implementation", dependency: retrofit.logger],
+            [configuration: "implementation", dependency: gson.lib],
+            [configuration: "debugImplementation", dependency: chuck.debug],
+            [configuration: "releaseImplementation", dependency: chuck.release],
+            [configuration: "implementation", dependency: imageCropper.lib]
+    ]
+
+}

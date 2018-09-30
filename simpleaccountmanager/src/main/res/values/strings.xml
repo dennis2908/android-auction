@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name" translatable="false">Simple AccountManager</string>
+
+    <string name="itsmagic_present_simpleaccountmanager_selected_account_name" translatable="false">SELECTED_ACCOUNT_NAME</string>
+
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
+    android:contentAuthority="@string/account_manager_account_provider_profile"
+    android:accountType="@string/account_manager_account_type"
+    android:userVisible="true"
+    android:isAlwaysSyncable="true" />

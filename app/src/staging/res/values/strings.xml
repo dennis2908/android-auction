@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="flavor_api_sample" translatable="false">Staging</string>
+
+</resources>

@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion project.ext.compileSdkVersion
+    buildToolsVersion project.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 23
+        versionName "2.8"
+    }
+}
+
+dependencies {
+    implementation "com.android.support:support-core-utils:27.0.2"
+}

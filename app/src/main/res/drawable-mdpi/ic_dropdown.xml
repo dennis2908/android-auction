@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- disabled -->
+    <item
+        android:state_enabled="false"
+        android:drawable="@drawable/ic_dropdown_def" />
+
+    <!-- pressed -->
+    <item
+        android:state_pressed="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/ic_dropdown_hit" />
+
+    <!-- focused -->
+    <item
+        android:state_focused="true"
+        android:state_enabled="true"
+        android:drawable="@drawable/ic_dropdown_hit" />
+
+    <!-- enabled -->
+    <item
+        android:state_enabled="true"
+        android:drawable="@drawable/ic_dropdown_def" />
+
+</selector>

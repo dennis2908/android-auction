@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">EasierSpinner</string>
+
+    <string name="easyspin_refresh">Refresh</string>
+    <string name="easyspin_null_both_warn">Both placeholder and data must not be null</string>
+    <string name="easyspin_null_warn">Data must not be null</string>
+
+</resources>

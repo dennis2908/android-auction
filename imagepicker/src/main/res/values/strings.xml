@@ -1,0 +1,14 @@
+<resources>
+
+    <string name="app_name" translatable="false">ImagePicker</string>
+
+    <string name="impicker_title">Choose a Picture</string>
+    <string name="impicker_camera">From camera…</string>
+    <string name="impicker_gallery">From gallery…</string>
+
+    <string-array name="impicker_selection">
+        <item>@string/impicker_camera</item>
+        <item>@string/impicker_gallery</item>
+    </string-array>
+
+</resources>

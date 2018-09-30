@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/easierspinner_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/easierspinner_refresh_margin"
+        android:layout_marginStart="@dimen/easierspinner_refresh_margin"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/easyspin_refresh"
+        android:src="@drawable/easierspinner_ic_refresh"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <itsmagic.present.easierspinner.widget.CustomSpinner
+        android:id="@+id/easierspinner_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/easierspinner_refresh"
+        android:layout_toStartOf="@id/easierspinner_refresh" />
+
+</RelativeLayout>

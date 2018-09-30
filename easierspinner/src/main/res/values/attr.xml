@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="EasierSpinner">
+        <attr name="easyspinner_refreshImage" format="reference" />
+        <attr name="easyspinner_refreshImageColor" format="color" />
+    </declare-styleable>
+
+</resources>
